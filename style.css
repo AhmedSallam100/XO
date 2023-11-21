@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+:root {
+  --main-color: #560ff3;
+  --gold-color: gold;
+}
+::selection {
+  color: #fff;
+  background-color: var(--main-color);
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0b061d;
+}
+/*===========[ Start Style ]===========*/
+.wrapper {
+  width: 400px;
+  height: 400px;
+}
+.wrapper h1 {
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 40px;
+}
+.wrapper h1 span {
+  color: var(--gold-color);
+}
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  width: 120px;
+  height: 120px;
+  margin: 5px;
+  font-size: 45px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: var(--main-color);
+}
+.square:hover {
+  filter: brightness(90%);
+}
+/*===========[ End Style ]===========*/

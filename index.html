@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="imgs/game.png" />
+    <title>XO Game</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1><span>XO</span> Game</h1>
+      <div class="square" id="A1" onclick="insert(this.id)"></div>
+      <div class="square" id="A2" onclick="insert(this.id)"></div>
+      <div class="square" id="A3" onclick="insert(this.id)"></div>
+      <!-- ============= ============= -->
+      <div class="square" id="A4" onclick="insert(this.id)"></div>
+      <div class="square" id="A5" onclick="insert(this.id)"></div>
+      <div class="square" id="A6" onclick="insert(this.id)"></div>
+      <!-- ============= ============= -->
+      <div class="square" id="A7" onclick="insert(this.id)"></div>
+      <div class="square" id="A8" onclick="insert(this.id)"></div>
+      <div class="square" id="A9" onclick="insert(this.id)"></div>
+    </div>
+    <script>
+      let turn = true; // true => X turn
+      let squares = [];
+
+      let reset = (a, b, c) => {
+        let aEle = document.getElementById(`A${a}`);
+        let bEle = document.getElementById(`A${b}`);
+        let cEle = document.getElementById(`A${c}`);
+        aEle.style.backgroundColor = "gold";
+        bEle.style.backgroundColor = "gold";
+        cEle.style.backgroundColor = "gold";
+        aEle.style.color = "#0b061d";
+        bEle.style.color = "#0b061d";
+        cEle.style.color = "#0b061d";
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+      };
+
+      let checkWinner = () => {
+        for (let i = 1; i <= 9; i++) {
+          squares[i] = document.getElementById(`A${i}`).innerHTML;
+        }
+        /*====== Start horizontal ======*/
+        if (
+          squares[1] == squares[2] &&
+          squares[2] == squares[3] &&
+          squares[1] != ""
+        ) {
+          alert(`Player ${squares[1]} won the game`);
+          reset(1, 2, 3);
+        }
+        if (
+          squares[4] == squares[5] &&
+          squares[5] == squares[6] &&
+          squares[4] != ""
+        ) {
+          alert(`Player ${squares[4]} won the game`);
+          reset(4, 5, 6);
+        }
+        if (
+          squares[7] == squares[8] &&
+          squares[8] == squares[9] &&
+          squares[7] != ""
+        ) {
+          alert(`Player ${squares[7]} won the game`);
+          reset(7, 8, 9);
+        }
+        /*====== End horizontal ======*/
+        /*====== Start Vertical ======*/
+        if (
+          squares[1] == squares[4] &&
+          squares[4] == squares[7] &&
+          squares[1] != ""
+        ) {
+          alert(`Player ${squares[1]} won the game`);
+          reset(1, 4, 7);
+        }
+        if (
+          squares[2] == squares[5] &&
+          squares[5] == squares[8] &&
+          squares[2] != ""
+        ) {
+          alert(`Player ${squares[2]} won the game`);
+          reset(2, 5, 8);
+        }
+        if (
+          squares[3] == squares[6] &&
+          squares[6] == squares[9] &&
+          squares[3] != ""
+        ) {
+          alert(`Player ${squares[3]} won the game`);
+          reset(3, 6, 9);
+        }
+        /*====== End Vertical ======*/
+        /*====== Start Slope ======*/
+        if (
+          squares[1] == squares[5] &&
+          squares[5] == squares[9] &&
+          squares[1] != ""
+        ) {
+          alert(`Player ${squares[1]} won the game`);
+          reset(1, 5, 9);
+        }
+        if (
+          squares[3] == squares[5] &&
+          squares[5] == squares[7] &&
+          squares[3] != ""
+        ) {
+          alert(`Player ${squares[3]} won the game`);
+          reset(3, 5, 7);
+        }
+        /*====== End Slope ======*/
+      };
+
+      let insert = (id) => {
+        var square = document.getElementById(id);
+        if (turn && square.innerHTML == "") {
+          square.innerHTML = "X";
+          turn = !turn;
+        } else if (!turn && square.innerHTML == "") {
+          square.innerHTML = "O";
+          turn = !turn;
+        }
+        checkWinner();
+      };
+    </script>
+  </body>
+</html>
